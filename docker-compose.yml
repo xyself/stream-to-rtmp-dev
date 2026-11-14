@@ -1,0 +1,26 @@
+services:
+  stream-to-rtmp:
+    build: .
+    image: stream-to-rtmp:latest
+    container_name: stream-to-rtmp
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      NODE_ENV: production
+      FFMPEG_PATH: /usr/bin/ffmpeg
+      DATABASE_PATH: /app/data/data.db
+      PORT: 8080
+      # 注意：服务默认只监听 127.0.0.1；对外开放时必须配置 DASHBOARD_TOKEN，
+      # 否则启动会被拒绝（见 main.js）
+      BIND_HOST: 0.0.0.0
+    ports:
+      - "8080:8080"  # 健康检查端口
+    volumes:
+      - ./data:/app/data
+    # 健康检查走 Dockerfile 里的 HEALTHCHECK（busybox wget），这里不再重复定义
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"

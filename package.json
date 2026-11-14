@@ -1,0 +1,21 @@
+{
+  "name": "stream-to-rtmp",
+  "version": "1.0.0",
+  "description": "Bilibili/Douyu live relay bot with Telegram control panel",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "dependencies": {
+    "axios": "^1.15.2",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "grammy": "^1.42.0"
+  },
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}
